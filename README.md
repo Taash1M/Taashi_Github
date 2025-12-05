@@ -10,4 +10,4 @@ I'm a passionate Data Engineer and Engineering Manager focused on building robus
 
 ---
 
-*TLast updated: 2025-12-05 17:49:38*
+*Last updated: 2025-12-05 17:49:38*
