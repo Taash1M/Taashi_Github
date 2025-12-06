@@ -13,5 +13,5 @@ This folder contains **narrative case studies** that connect architecture, code,
 3. `03_ai_governance_enablement.md`  
    - How I introduced AI/LLM capabilities with strong governance.
 
-These are designed for hiring managers and executives to quickly understand the **business 
+I am sharing these to help others understand the **business 
 impact** behind the engineering work in my repos.
