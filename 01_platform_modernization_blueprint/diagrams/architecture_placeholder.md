@@ -1,6 +1,6 @@
 # Platform modernization blueprint architecture
 
-    This diagram captures a **cloud-native data platform modernization** journey that a Director of Data Engineering would lead: migrating from siloed, on-prem systems to a governed, scalable analytics platform on a modern cloud stack.
+    This diagram captures a **cloud-native data platform modernization** journey that i would lead: migrating from siloed, on-prem systems to a governed, scalable analytics platform on a modern cloud stack.
 
     ```mermaid
     flowchart LR
@@ -64,7 +64,7 @@ Kafka / Event Hub]
         Policies --- Serving
     ```
 
-    ## Architecture narrative (Director-level)
+    ## Architecture narrative 
 
     **Objective:** Replace fragmented, on-prem data silos with a **scalable, governed platform** that can support analytics, self-service BI, and ML at enterprise scale.
 
