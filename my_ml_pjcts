@@ -1,0 +1,440 @@
+import os
+from pathlib import Path
+from textwrap import dedent
+
+# ============================================================
+# Helper functions
+# ============================================================
+
+def ensure_dir(path: Path):
+    path.mkdir(parents=True, exist_ok=True)
+
+def write_if_missing(path: Path, content: str):
+    """Create file only if it does not exist."""
+    if not path.exists():
+        path.write_text(dedent(content).lstrip(), encoding="utf-8")
+
+def overwrite_readme(path: Path, content: str):
+    """Overwrite README.md files (per your O2 preference)."""
+    path.write_text(dedent(content).lstrip(), encoding="utf-8")
+
+
+# ============================================================
+# Project 1 — Linear Regression: House Prices
+# ============================================================
+
+def create_linear_regression_project(root: Path):
+    project_dir = root / "12_ml_linear_regression_house_prices"
+    ensure_dir(project_dir)
+
+    src_dir = project_dir / "src"
+    tests_dir = project_dir / "tests"
+    diagrams_dir = project_dir / "diagrams"
+
+    ensure_dir(src_dir)
+    ensure_dir(tests_dir)
+    ensure_dir(diagrams_dir)
+
+    # README
+    readme = """
+    # Linear Regression — Predicting House Prices
+
+    ## Overview
+    This project demonstrates a complete end-to-end **linear regression workflow** using scikit-learn.
+    The goal is to predict house prices based on:
+
+    - Square footage
+    - Number of bedrooms
+    - Neighborhood quality score
+
+    This mirrors real-world pricing models used in real estate, lending, and investment analytics.
+
+    ## What This Project Demonstrates
+    - Synthetic dataset creation
+    - Feature engineering
+    - Train/test split
+    - Model training using LinearRegression
+    - Model evaluation (MAE, RMSE, R²)
+    - Visualization of predictions vs. actual values
+    - Extensive commentary for readability
+
+    ## How to Run
+    ```
+    pip install numpy pandas scikit-learn matplotlib
+    python src/linear_regression_house_prices.py
+    ```
+    """
+    overwrite_readme(project_dir / "README.md", readme)
+
+    # Python script
+    script = """
+    \"\"\"
+    Linear Regression Example: Predicting House Prices
+
+    This script demonstrates:
+    - Synthetic dataset creation
+    - Feature engineering
+    - Train/test split
+    - Model training
+    - Evaluation
+    - Visualization
+
+    Every step is heavily commented for readability.
+    \"\"\"
+
+    import numpy as np
+    import pandas as pd
+    from sklearn.model_selection import train_test_split
+    from sklearn.linear_model import LinearRegression
+    from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+    import matplotlib.pyplot as plt
+
+    # ---------------------------------------------------------
+    # STEP 1: Create a synthetic dataset
+    # ---------------------------------------------------------
+
+    np.random.seed(42)
+    n = 500
+
+    square_feet = np.random.normal(1800, 500, n)
+    bedrooms = np.random.randint(1, 6, n)
+    neighborhood_score = np.random.uniform(1, 10, n)
+
+    price = (
+        square_feet * 150
+        + bedrooms * 10000
+        + neighborhood_score * 8000
+        + np.random.normal(0, 20000, n)
+    )
+
+    df = pd.DataFrame({
+        "square_feet": square_feet,
+        "bedrooms": bedrooms,
+        "neighborhood_score": neighborhood_score,
+        "price": price
+    })
+
+    print("Sample of dataset:")
+    print(df.head())
+
+    # ---------------------------------------------------------
+    # STEP 2: Train/Test Split
+    # ---------------------------------------------------------
+
+    X = df[["square_feet", "bedrooms", "neighborhood_score"]]
+    y = df["price"]
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42
+    )
+
+    # ---------------------------------------------------------
+    # STEP 3: Train the Linear Regression Model
+    # ---------------------------------------------------------
+
+    model = LinearRegression()
+    model.fit(X_train, y_train)
+
+    print("\\nModel coefficients:")
+    print(f"Square Feet Weight: {model.coef_[0]:,.2f}")
+    print(f"Bedrooms Weight: {model.coef_[1]:,.2f}")
+    print(f"Neighborhood Score Weight: {model.coef_[2]:,.2f}")
+    print(f"Intercept: {model.intercept_:,.2f}")
+
+    # ---------------------------------------------------------
+    # STEP 4: Evaluate the Model
+    # ---------------------------------------------------------
+
+    y_pred = model.predict(X_test)
+
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = np.sqrt(mean_squared_error(y_test, y_pred))
+    r2 = r2_score(y_test, y_pred)
+
+    print("\\nModel Performance:")
+    print(f"MAE:  {mae:,.2f}")
+    print(f"RMSE: {rmse:,.2f}")
+    print(f"R²:   {r2:.4f}")
+
+    # ---------------------------------------------------------
+    # STEP 5: Visualization
+    # ---------------------------------------------------------
+
+    plt.figure(figsize=(10, 6))
+    plt.scatter(y_test, y_pred, alpha=0.6)
+    plt.xlabel("Actual Prices")
+    plt.ylabel("Predicted Prices")
+    plt.title("Actual vs Predicted House Prices")
+    plt.grid(True)
+    plt.show()
+    """
+    write_if_missing(src_dir / "linear_regression_house_prices.py", script)
+
+    # Diagram placeholder
+    diagram = """
+    # Diagram Placeholder
+
+    Suggested diagram:
+    - Data generation
+    - Feature matrix
+    - Train/test split
+    - Linear regression model
+    - Evaluation metrics
+    """
+    write_if_missing(diagrams_dir / "diagram_placeholder.md", diagram)
+
+
+# ============================================================
+# Project 2 — Logistic Regression: Customer Churn
+# ============================================================
+
+def create_logistic_regression_project(root: Path):
+    project_dir = root / "13_ml_logistic_regression_churn"
+    ensure_dir(project_dir)
+
+    src_dir = project_dir / "src"
+    tests_dir = project_dir / "tests"
+    diagrams_dir = project_dir / "diagrams"
+
+    ensure_dir(src_dir)
+    ensure_dir(tests_dir)
+    ensure_dir(diagrams_dir)
+
+    readme = """
+    # Logistic Regression — Customer Churn Prediction
+
+    ## Overview
+    This project demonstrates a complete logistic regression workflow to predict customer churn.
+
+    ## Features
+    - Synthetic dataset creation
+    - LogisticRegression model training
+    - Probability predictions
+    - Confusion matrix + accuracy, precision, recall
+    - ROC curve visualization
+    - Extensive commentary for readability
+
+    ## How to Run
+    ```
+    pip install numpy pandas scikit-learn matplotlib
+    python src/logistic_regression_churn.py
+    ```
+    """
+    overwrite_readme(project_dir / "README.md", readme)
+
+    script = """
+    \"\"\"
+    Logistic Regression Example: Predicting Customer Churn
+    \"\"\"
+
+    import numpy as np
+    import pandas as pd
+    from sklearn.model_selection import train_test_split
+    from sklearn.linear_model import LogisticRegression
+    from sklearn.metrics import (
+        accuracy_score, precision_score, recall_score,
+        confusion_matrix, roc_curve, auc
+    )
+    import matplotlib.pyplot as plt
+
+    np.random.seed(42)
+    n = 600
+
+    monthly_usage = np.random.normal(50, 15, n)
+    tenure_months = np.random.randint(1, 48, n)
+    satisfaction = np.random.uniform(1, 10, n)
+
+    logits = (
+        -0.05 * monthly_usage
+        - 0.03 * tenure_months
+        - 0.4 * satisfaction
+        + 10
+    )
+
+    prob_churn = 1 / (1 + np.exp(-logits))
+    churn = np.random.binomial(1, prob_churn)
+
+    df = pd.DataFrame({
+        "monthly_usage": monthly_usage,
+        "tenure_months": tenure_months,
+        "satisfaction": satisfaction,
+        "churn": churn
+    })
+
+    X = df[["monthly_usage", "tenure_months", "satisfaction"]]
+    y = df["churn"]
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.25, random_state=42
+    )
+
+    model = LogisticRegression()
+    model.fit(X_train, y_train)
+
+    y_pred = model.predict(X_test)
+    y_prob = model.predict_proba(X_test)[:, 1]
+
+    acc = accuracy_score(y_test, y_pred)
+    prec = precision_score(y_test, y_pred)
+    rec = recall_score(y_test, y_pred)
+    cm = confusion_matrix(y_test, y_pred)
+
+    print("\\nPerformance:")
+    print(f"Accuracy:  {acc:.3f}")
+    print(f"Precision: {prec:.3f}")
+    print(f"Recall:    {rec:.3f}")
+    print("\\nConfusion Matrix:")
+    print(cm)
+
+    fpr, tpr, _ = roc_curve(y_test, y_prob)
+    roc_auc = auc(fpr, tpr)
+
+    plt.figure(figsize=(8, 6))
+    plt.plot(fpr, tpr, label=f"AUC = {roc_auc:.3f}")
+    plt.plot([0, 1], [0, 1], linestyle="--")
+    plt.xlabel("False Positive Rate")
+    plt.ylabel("True Positive Rate")
+    plt.title("ROC Curve — Customer Churn Model")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+    """
+    write_if_missing(src_dir / "logistic_regression_churn.py", script)
+
+    diagram = """
+    # Diagram Placeholder
+
+    Suggested diagram:
+    - Feature matrix
+    - Logistic regression classifier
+    - Probability outputs
+    - ROC curve
+    """
+    write_if_missing(diagrams_dir / "diagram_placeholder.md", diagram)
+
+
+# ============================================================
+# Project 3 — Sentiment Analysis
+# ============================================================
+
+def create_sentiment_analysis_project(root: Path):
+    project_dir = root / "14_ml_sentiment_analysis"
+    ensure_dir(project_dir)
+
+    src_dir = project_dir / "src"
+    tests_dir = project_dir / "tests"
+    diagrams_dir = project_dir / "diagrams"
+
+    ensure_dir(src_dir)
+    ensure_dir(tests_dir)
+    ensure_dir(diagrams_dir)
+
+    readme = """
+    # Sentiment Analysis — Movie Review Classification
+
+    ## Overview
+    This project demonstrates a complete NLP workflow using:
+
+    - Text preprocessing
+    - TF-IDF vectorization
+    - Logistic Regression classifier
+    - Model evaluation
+    - Word importance analysis
+
+    ## How to Run
+    ```
+    pip install numpy pandas scikit-learn matplotlib
+    python src/sentiment_analysis.py
+    ```
+    """
+    overwrite_readme(project_dir / "README.md", readme)
+
+    script = """
+    \"\"\"
+    Sentiment Analysis Example: Movie Review Classification
+    \"\"\"
+
+    import numpy as np
+    import pandas as pd
+    from sklearn.model_selection import train_test_split
+    from sklearn.feature_extraction.text import TfidfVectorizer
+    from sklearn.linear_model import LogisticRegression
+    from sklearn.metrics import accuracy_score, classification_report
+
+    positive_reviews = [
+        "I loved this movie, it was fantastic!",
+        "Amazing acting and great story.",
+        "One of the best films I've seen.",
+        "Absolutely wonderful experience.",
+        "Brilliant, emotional, and inspiring."
+    ]
+
+    negative_reviews = [
+        "Terrible movie, I hated it.",
+        "Awful acting and boring plot.",
+        "One of the worst films ever.",
+        "A complete waste of time.",
+        "Disappointing and poorly made."
+    ]
+
+    reviews = positive_reviews * 20 + negative_reviews * 20
+    labels = [1] * (len(positive_reviews) * 20) + [0] * (len(negative_reviews) * 20)
+
+    df = pd.DataFrame({"review": reviews, "label": labels})
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        df["review"], df["label"], test_size=0.2, random_state=42
+    )
+
+    vectorizer = TfidfVectorizer(stop_words="english")
+    X_train_vec = vectorizer.fit_transform(X_train)
+    X_test_vec = vectorizer.transform(X_test)
+
+    model = LogisticRegression()
+    model.fit(X_train_vec, y_train)
+
+    y_pred = model.predict(X_test_vec)
+
+    print("\\nAccuracy:", accuracy_score(y_test, y_pred))
+    print("\\nClassification Report:")
+    print(classification_report(y_test, y_pred))
+
+    feature_names = np.array(vectorizer.get_feature_names_out())
+    coefficients = model.coef_[0]
+
+    top_positive = feature_names[np.argsort(coefficients)[-10:]]
+    top_negative = feature_names[np.argsort(coefficients)[:10]]
+
+    print("\\nTop Positive Words:", top_positive)
+    print("Top Negative Words:", top_negative)
+    """
+    write_if_missing(src_dir / "sentiment_analysis.py", script)
+
+    diagram = """
+    # Diagram Placeholder
+
+    Suggested diagram:
+    - Text input
+    - TF-IDF vectorizer
+    - Logistic regression classifier
+    - Predictions
+    """
+    write_if_missing(diagrams_dir / "diagram_placeholder.md", diagram)
+
+
+# ============================================================
+# MAIN EXECUTION
+# ============================================================
+
+def main():
+    root = Path.cwd()
+
+    create_linear_regression_project(root)
+    create_logistic_regression_project(root)
+    create_sentiment_analysis_project(root)
+
+    print("✅ Machine Learning projects created successfully.")
+
+
+if __name__ == "__main__":
+    main()
