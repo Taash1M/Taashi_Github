@@ -1,0 +1,9 @@
+name: 'platform_modernization_blueprint'
+version: '1.0.0'
+config-version: 2
+
+profile: 'default'
+
+models:
+  platform_modernization_blueprint:
+    +materialized: view

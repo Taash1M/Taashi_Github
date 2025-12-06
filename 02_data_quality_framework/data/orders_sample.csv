@@ -1,0 +1,1 @@
+order_id,customer_id,order_total,currency\n1,101,120.5,USD\n2,102,85.0,EUR\n3,103,-5.0,USD\n

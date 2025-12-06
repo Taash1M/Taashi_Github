@@ -1,0 +1,9 @@
+name: 'warehouse_modeling'
+version: '1.0.0'
+config-version: 2
+
+profile: 'default'
+
+models:
+  warehouse_modeling:
+    +materialized: table

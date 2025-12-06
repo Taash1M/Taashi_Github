@@ -1,0 +1,91 @@
+{
+    "name": "PL_EBS_TO_GOLD",
+    "properties": {
+        "activities": [
+            {
+                "name": "Copy_Oracle_EBS_to_Bronze",
+                "type": "Copy",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [
+                    {
+                        "name": "Manager_Approval_Required",
+                        "value": "True"
+                    }
+                ],
+                "typeProperties": {
+                    "source": {
+                        "type": "OracleSource",
+                        "oracleReaderQuery": "SELECT * FROM EBS_SALES_VIEW WHERE LAST_UPDATE_DATE >= ADD_MONTHS(SYSDATE, -1)"
+                    },
+                    "sink": {
+                        "type": "DelimitedTextSink",
+                        "storeSettings": {
+                            "type": "AzureBlobFSWriteSettings"
+                        },
+                        "formatSettings": {
+                            "type": "DelimitedTextWriteSettings",
+                            "quoteAllText": true,
+                            "fileExtension": ".csv"
+                        }
+                    },
+                    "enableStaging": false,
+                    "dataIntegrationUnits": 12,
+                    "parallelCopies": 8
+                },
+                "linkedServiceName": {
+                    "referenceName": "LS_Oracle_EBS_SHIR",
+                    "type": "LinkedServiceReference"
+                }
+            },
+            {
+                "name": "Databricks_Bronze_to_Gold",
+                "type": "DatabricksNotebook",
+                "dependsOn": [
+                    {
+                        "activity": "Copy_Oracle_EBS_to_Bronze",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.01:00:00",
+                    "retry": 3,
+                    "retryIntervalInSeconds": 60
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebookPath": "/Users/taashim/notebooks/ebs_transform",
+                    "baseParameters": {
+                        "source_path": "@activity('Copy_Oracle_EBS_to_Bronze').output.sink.path",
+                        "commit_sha": "@pipeline().parameters.CommitSHA"
+                    }
+                },
+                "linkedServiceName": {
+                    "referenceName": "LS_AzureDatabricks",
+                    "type": "LinkedServiceReference"
+                }
+            }
+        ],
+        "parameters": {
+            "CommitSHA": {
+                "type": "string",
+                "defaultValue": "local_run"
+            }
+        },
+        "folder": {
+            "name": "EBS_Integration"
+        },
+        "annotations": [
+            "Medallion_Architecture",
+            "CI_CD_Ready"
+        ]
+    }
+}

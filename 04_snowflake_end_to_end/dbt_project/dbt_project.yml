@@ -1,0 +1,9 @@
+name: 'snowflake_end_to_end'
+version: '1.0.0'
+config-version: 2
+
+profile: 'snowflake_profile'
+
+models:
+  snowflake_end_to_end:
+    +materialized: view

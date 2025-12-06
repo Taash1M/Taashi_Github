@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: dim_customer
+    description: "Customer dimension"
+    columns:
+      - name: customer_id
+        tests:
+          - not_null
+          - unique
+  - name: fct_orders
+    description: "Order fact table"
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+          - unique
+
+sources:
+  - name: staging
+    tables:
+      - name: customers
+      - name: orders

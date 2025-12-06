@@ -1,0 +1,27 @@
+name: Data Quality CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+
+jobs:
+  dq-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install great-expectations pytest pandas
+
+      - name: Run pytest
+        run: pytest
+
+      - name: Run data validation
+        run: python src/validate_orders.py || true

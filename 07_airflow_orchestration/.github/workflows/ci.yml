@@ -1,0 +1,20 @@
+name: Airflow DAG Lint
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+
+jobs:
+  lint-dags:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install airflow (minimal)
+        run: pip install apache-airflow==2.8.1 --constraint https://raw.githubusercontent.com/apache/airflow/constraints-2.8.1/constraints-3.11.txt
+      - name: Import DAGs
+        run: python -c "import importlib; import os; [importlib.import_module(f'dags.{f[:-3]}') for f in os.listdir('dags') if f.endswith('.py')]"
