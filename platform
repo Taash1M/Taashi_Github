@@ -2028,16 +2028,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-avg_temperature,
-    avg_pressure,
-    avg_vibration,
-    avg_production_rate,
-    avg_quality_score,
-    record_count,
-    warning_count,
-    critical_count
-)
-SELECT
-    DATEADD(HOUR, DATEPART(HOUR, timestamp), CAST(CAST(timestamp AS DATE) AS DATETIME2)) as timestamp_hour,
-    device_id,
     
