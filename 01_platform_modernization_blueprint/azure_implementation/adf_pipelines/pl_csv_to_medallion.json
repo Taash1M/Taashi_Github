@@ -1,0 +1,104 @@
+{
+  "name": "pl_csv_to_medallion",
+  "properties": {
+    "description": "Ingest CSV sample data and apply Medallion transformations via Databricks notebooks.",
+    "activities": [
+      {
+        "name": "Copy_CSV_to_Bronze",
+        "type": "Copy",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "02:00:00",
+          "retry": 1,
+          "retryIntervalInSeconds": 30
+        },
+        "inputs": [
+          {
+            "referenceName": "ds_csv_local_sample",
+            "type": "DatasetReference"
+          }
+        ],
+        "outputs": [
+          {
+            "referenceName": "ds_adls_bronze_parquet",
+            "type": "DatasetReference"
+          }
+        ],
+        "typeProperties": {
+          "source": {
+            "type": "DelimitedTextSource",
+            "treatEmptyAsNull": true,
+            "skipHeaderLineCount": 1
+          },
+          "sink": {
+            "type": "ParquetSink",
+            "storeSettings": {
+              "type": "AzureBlobFSWriteSettings"
+            },
+            "formatSettings": {
+              "type": "ParquetFormat"
+            }
+          }
+        }
+      },
+      {
+        "name": "Notebook_Bronze_to_Silver",
+        "type": "DatabricksNotebook",
+        "dependsOn": [
+          {
+            "activity": "Copy_CSV_to_Bronze",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "notebookPath": "/Shared/bronze_to_silver",
+          "baseParameters": {
+            "bronze_path": "abfss://bronze@<STORAGE_ACCOUNT>.dfs.core.windows.net/manufacturing_events/bronze",
+            "silver_path": "abfss://silver@<STORAGE_ACCOUNT>.dfs.core.windows.net/manufacturing_events/silver"
+          }
+        },
+        "linkedServiceName": {
+          "referenceName": "ls_azure_databricks",
+          "type": "LinkedServiceReference"
+        }
+      },
+      {
+        "name": "Notebook_Silver_to_Gold",
+        "type": "DatabricksNotebook",
+        "dependsOn": [
+          {
+            "activity": "Notebook_Bronze_to_Silver",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "notebookPath": "/Shared/silver_to_gold",
+          "baseParameters": {
+            "silver_path": "abfss://silver@<STORAGE_ACCOUNT>.dfs.core.windows.net/manufacturing_events/silver",
+            "gold_path": "abfss://gold@<STORAGE_ACCOUNT>.dfs.core.windows.net/manufacturing_events/gold"
+          }
+        },
+        "linkedServiceName": {
+          "referenceName": "ls_azure_databricks",
+          "type": "LinkedServiceReference"
+        }
+      }
+    ],
+    "parameters": {
+      "RunId": {
+        "type": "String",
+        "defaultValue": "manual_run"
+      }
+    },
+    "annotations": [
+      "medallion",
+      "sample",
+      "csv",
+      "databricks"
+    ]
+  }
+}
