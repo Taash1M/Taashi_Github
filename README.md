@@ -86,6 +86,41 @@ I'm a **data engineering leader** with 15+ years architecting enterprise platfor
 f4ca Impact: Comprehensive portfolio demonstrating strategic thinking  
 f527 Includes: ADRs, incident response, management philosophy
 
+
+
+---
+
+
+### [Streaming Big Data Systems](/Taash1M/Taashi_Github/tree/main/Implementation%20Code/Streaming_Big_Data)
+
+**Advanced High-Throughput Distributed Systems Portfolio**
+
+#### [01_DoorDash_Logistics](/Taash1M/Taashi_Github/tree/main/Implementation%20Code/Streaming_Big_Data/01_DoorDash_Logistics)
+**Focus: State Management & Out-of-Order Data**
+* **Tech:** Flink, Kafka, Terraform, Postgres
+* **Concept:** Handling late events in delivery logic using complex windowing.
+
+#### [02_Uber_CDC_Mesh](/Taash1M/Taashi_Github/tree/main/Implementation%20Code/Streaming_Big_Data/02_Uber_CDC_Mesh)
+**Focus: Data Integration & Schema Evolution**
+* **Tech:** Debezium, Kafka Connect, Avro, Iceberg
+* **Concept:** "At-least-once" delivery with schema registry for order tables.
+
+#### [03_Netflix_Keystone](/Taash1M/Taashi_Github/tree/main/Implementation%20Code/Streaming_Big_Data/03_Netflix_Keystone)
+**Focus: Platform Engineering & Routing**
+* **Tech:** Dynamic Routing, Redis, Great Expectations
+* **Concept:** Self-serve data routing platform with dynamic rule enforcement.
+
+#### [04_Snapchat_RealTimeML](/Taash1M/Taashi_Github/tree/main/Implementation%20Code/Streaming_Big_Data/04_Snapchat_RealTimeML)
+**Focus: High Throughput & Feature Engineering**
+* **Tech:** Spark Structured Streaming, Redis (Feature Store)
+* **Concept:** Low-latency read paths for real-time ML inference.
+
+#### [05_X_Stream_Filtering](/Taash1M/Taashi_Github/tree/main/Implementation%20Code/Streaming_Big_Data/05_X_Stream_Filtering)
+**Focus: High Volume Filtering**
+* **Tech:** Bloom Filters, Firehose Ingestion
+* **Concept:** Efficient stream filtering and sentiment analysis at scale.
+
+
 ---
 
 ## By The Numbers

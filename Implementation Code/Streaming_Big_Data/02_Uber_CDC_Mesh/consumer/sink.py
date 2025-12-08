@@ -1,0 +1,1 @@
+# Spark Structure Streaming Sink logic
