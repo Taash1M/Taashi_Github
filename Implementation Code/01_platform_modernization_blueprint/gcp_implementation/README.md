@@ -1,75 +1,15 @@
-# GCP Platform Modernization Implementation
 
-## Overview
+# GCP Module: Serverless Streaming User Analytics
 
-This folder contains a concrete Medallion-style data platform on **Google Cloud**:
+## 1. Executive Summary & Problem Statement
+**The Challenge:** Mobile connectivity issues cause "Late Data," breaking traditional session metrics.
+**The Solution:** Google Cloud Dataflow with Watermark handling.
 
-- **Bronze**: Raw JSON in Cloud Storage (from CSV via Dataflow)
-- **Silver**: Cleaned, standardized data in BigQuery (or Parquet in GCS)
-- **Gold**: Hourly device metrics in BigQuery with user-friendly metrics
+## 2. Medallion Architecture Implementation
+* **Bronze:** Raw JSON strings from Pub/Sub.
+* **Silver:** Parsed objects with "Event Time" assigned (handling the 'late arrival' problem).
+* **Gold:** Dynamic Session Windows that re-sequence the disordered events into accurate user journeys.
 
-Core tools:
-
-- Cloud Storage (GCS)
-- Dataflow (Apache Beam)
-- BigQuery
-
----
-
-## Sample Data
-
-The canonical manufacturing IoT sample data lives at:
-
-- `gcp_implementation/sample_data/manufacturing_events.csv`
-
-Typical columns:
-
-- `timestamp`, `device_id`, `facility_id`, `temperature`, `pressure`,
-  `vibration`, `status`, `production_rate`, `quality_score`
-
----
-
-## End-to-End Flow
-
-### 1. Dataflow Ingestion: CSV -> Bronze (JSON in GCS)
-
-File: `dataflow_pipelines/ingest_to_bronze.py`
-
-- Reads CSV from a GCS location
-- Normalizes rows into JSON objects
-- Writes line-delimited JSON files into:
-
-```text
-gs://<YOUR_BUCKET>/manufacturing_events/bronze/events-*.json
-```
-
-### 2. Dataflow ETL: Bronze -> Silver
-
-File: `dataflow_pipelines/bronze_to_silver.py`
-
-- Reads JSON from Bronze GCS
-- Cleanses and standardizes data
-- Writes to BigQuery Silver table (or Parquet in GCS)
-
-### 3. BigQuery SQL: Silver -> Gold
-
-File: `bigquery_sql/create_silver_and_gold_tables.sql`
-
-- Creates Gold table with hourly device metrics
-- Aggregates data with user-friendly column names
-
----
-
-## Running the Script
-
-Execute this script to generate all artifacts:
-
-```bash
-python update_gcp_implementation.py
-```
-
-This will create all necessary directories and files in the `gcp_implementation` folder.
-
----
-
-*Last updated: 2025-12-07*
+## 3. How to Run
+1.  `cd gcp_implementation`
+2.  `python dataflow_pipeline.py`
