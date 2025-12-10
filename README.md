@@ -1,181 +1,266 @@
-Hi, I'm Taashi Manyanga
-
-**Senior Data Engineering & Analytics Leader | 12+ Years Building High-Performing Teams & Scalable Platforms**
-
-Seattle, WA | f4bc Engineering Manager @ Fluke Corporation | f393 Foster Business School MS '26
+# Taashi Manyanga
+## Snr Data Engineering Leader - Data Platforms & Systems
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://linkedin.com/in/taashi-m-74b14a161)
-[![Email](https://img.shields.io/badge/Email-taashir%40gmail.com-red)](mailto:taashir@gmail.com)
+[![Email](https://img.shields.io/badge/Email-Contact-red)](mailto:taashir@gmail.com)
+[![Location](https://img.shields.io/badge/Location-Seattle%2C%20WA%20(Remote)-green)]()
 
 ---
 
-Who I Am
+## 🎯 Leadership Philosophy
 
-I'm a **data engineering leader** with 15+ years architecting enterprise platforms that process millions of events daily. My expertise spans **building high-trust engineering cultures**, **shipping production systems at scale**, and **balancing technical depth with people leadership**.
+*"Great engineering teams ship reliably at scale by balancing technical excellence with velocity, embracing failure as learning, and empowering individual ownership. I build high-trust cultures where engineers thrive, systems are designed for resilience, and customer impact drives every decision."*
 
-**Current Role:** Leading platform transformation at Fluke Corporation, where my team has:
-- f50c **Reduced latency by 70%** through cloud-native architecture migration
-- f3af **Achieved 99.5% reliability** via automated testing & monitoring frameworks
-- f680 **Shipped 3+ AI solutions** in 2024 (GPT, LangChain, production ML systems)
-- f465 **Built & mentored 12-person team** with strong retention & technical growth
+I specialize in building and scaling distributed data platforms, leading cross-functional engineering teams, and driving platform transformations that deliver measurable business impact while maintaining operational excellence.
 
 ---
 
-## What I Bring to the Table
+## 💼 Career Highlights
 
-### **Leadership & Team Building**
-- 	2705 Built and scaled engineering teams from 4 	 14 engineers
-- 	2705 Hired 26+ engineers across career with strong retention
-- 	2705 Established Centers of Excellence for data architecture & quality
-- 	2705 Mentor engineers through senior IC and leadership tracks
+### Platform Transformation & Delivery at Fluke Corporation
+- 🚀 **Cloud platform transformation**: Migrated from legacy Oracle to cloud-native architecture (Databricks, Synapse, BigQuery) serving 200+ customers
+- ⚡ **Performance impact**: Achieved **70% latency reduction** and **zero downtime** for millions of daily manufacturing events
+- 💰 **Cost & efficiency**: Delivered **30% cost reduction** with **70% performance improvement**
+- 📊 **Query optimization**: Reduced critical pipeline execution from **45min to 15min** (67% improvement)
 
-### **Technical Execution**
-- 	2705 Architected 5+ platform transformations (Oracle 	 Cloud, on-prem 	 Azure/AWS)
-- 	2705 Processing **10M+ events daily** with sub-second latency requirements
-- 	2705 Hands-on with Python, SQL, Spark, Airflow, dbt, Kafka
-- 	2705 Deep expertise in Databricks, Snowflake, BigQuery, Azure Synapse
+### Team Leadership & Organizational Impact
+- 👥 **Team building**: Led distributed engineering teams of **12-14 engineers**, maintaining **95%+ retention**
+- 📈 **System reliability**: Achieved **99.5% reliability** through automated testing (pytest, Great Expectations) and CI/CD
+- 🎓 **Technical excellence**: Established culture of operational rigor with blameless post-mortems and on-call practices
+- 🔧 **Data quality**: Reduced data quality incidents by **60%** through Python validation frameworks
 
-### **Business Impact**
-- 	2705 **$5M+ platform investments** managed with clear ROI
-- 	2705 **45% processing time reduction**, 30% cost savings
-- 	2705 Enabled real-time analytics supporting critical business decisions
-- 	2705 Cross-functional partnership with Product, Engineering, C-suite
-
----
-
-## Technical Stack
-
-**Cloud Platforms:** AWS 	 Azure 	 GCP (BigQuery) 	 Multi-cloud architecture  
-**Data Engineering:** Apache Spark 	 Kafka 	 Airflow 	 dbt 	 Python 	 SQL  ADF
-**Data Warehouses:** Databricks 	 Snowflake 	 BigQuery 	 Azure Synapse  
-**DevOps & Quality:** CI/CD 	 GitHub Actions 	 pytest 	 Great Expectations 	 Docker  
-**AI/ML:** GPT APIs 	 LangChain 	 MCP 	 Production ML systems  
-**Leadership:** Team Building 	 Operational Excellence 	 Incident Management 	 Strategic Planning
+### Innovation & Technical Leadership
+- 🤖 **AI/ML integration**: Shipped production AI solutions in 2024 with GPT APIs, LangChain, and MCP integrations
+- 📊 **Platform adoption**: Drove **3x increase** in platform usage through modern architecture and user-centric design
+- 🔄 **Streaming at scale**: Built real-time pipelines processing millions of manufacturing events daily
+- 💡 **Cross-functional impact**: Strong partnerships with product, operations, and analytics teams
 
 ---
 
-## Featured Portfolio Projects
+## 🏗️ Featured Projects
 
-### [Platform Modernization Blueprint](./01_platform_modernization_blueprint)
-**Real-world Oracle 	 Cloud migration case study**  
-f4ca Impact: 70% latency reduction, $1.5M cost savings, zero downtime  
-f527 Tech: Azure Synapse, Databricks, ADF, Airflow, dbt
+### Core Data Engineering Portfolio
 
-### [Data Quality Framework](./02_data_quality_framework)
-**Production Python framework processing 10M+ daily events**  
-f4ca Impact: 60% reduction in data quality incidents  
-f527 Tech: Python, Pandas, Great Expectations, pytest, monitoring
+#### [Platform Modernization Blueprint](./01_platform_modernization_blueprint)
+Complete Oracle to multi-cloud migration with Azure, AWS, and GCP implementations
 
-### [Snowflake End-to-End Platform](./04_snowflake_end_to_end)
-**Enterprise data platform patterns at scale**  
-f4ca Impact: 500K rows/sec ingestion, 99.95% uptime, 30% cost optimization  
-f527 Tech: Snowflake, Snowpipe, Streams, Tasks, dbt
+**Tech Stack:** Azure (Databricks, Synapse, ADF) • AWS (Glue, Athena) • GCP (BigQuery, Dataflow)  
+**Impact:** 70% performance improvement, 30% cost reduction, zero downtime
 
-### [Netflix-Scale Streaming Pipeline](./05_netflix_scale_pipeline)
-**High-throughput real-time data processing**  
-f4ca Impact: 10M events/sec, P99 < 500ms latency, 99.99% reliability  
-f527 Tech: Kafka, Spark Streaming, Airflow, Databricks
+#### [Data Quality Framework](./02_data_quality_framework)
+Production Python validation framework with automated testing
 
-### [AI/ML Governance Framework](./03_ai_ml_governance)
-**Production AI deployment with governance at scale**  
-f4ca Impact: Enabled safe deployment of 3+ AI solutions in 2024  
-f527 Tech: GPT-4, LangChain, MCP, FastAPI, monitoring
+**Tech Stack:** Python • Great Expectations • pytest • CI/CD  
+**Impact:** 60% reduction in data quality incidents, 99.5% reliability
 
-### [Case Studies & Leadership](./10_case_studies_portfolio)
-**Architecture decisions, post-mortems, team practices**  
-f4ca Impact: Comprehensive portfolio demonstrating strategic thinking  
-f527 Includes: ADRs, incident response, management philosophy
+#### [AI/ML Governance Framework](./03_ai_ml_governance)
+Production ML governance with policy enforcement and monitoring
 
+**Tech Stack:** GPT APIs • LangChain • MCP • Python • YAML configs  
+**Impact:** Enterprise-grade AI governance with measurable ROI
 
+#### [Snowflake End-to-End Implementation](./04_snowflake_end_to_end)
+Complete Snowflake data warehouse with dbt transformations
+
+**Tech Stack:** Snowflake • dbt • SQL • Data modeling  
+**Impact:** Scalable analytics platform serving 200+ users
+
+#### [Real-Time Streaming Pipeline](./05_netflix_scale_pipeline)
+Netflix-scale event processing with Spark Streaming
+
+**Tech Stack:** Apache Spark Streaming • Kafka • Real-time processing  
+**Impact:** Millions of manufacturing events processed daily
+
+#### [dbt Warehouse Modeling](./06_dbt_warehouse_modeling)
+Dimensional modeling with dbt for analytics
+
+**Tech Stack:** dbt • SQL • Dimensional modeling • Testing  
+**Impact:** Maintainable, tested data transformations
+
+#### [Airflow Orchestration](./07_airflow_orchestration)
+Production workflow orchestration patterns and DAGs
+
+**Tech Stack:** Apache Airflow • Python • Workflow management  
+**Impact:** Reliable, observable data pipelines
+
+#### [Spark Performance Optimization](./08_spark_optimization)
+Advanced Spark tuning techniques and comparisons
+
+**Tech Stack:** Apache Spark • PySpark • Performance tuning  
+**Impact:** Query time reduced from 45min to 15min (67% faster)
+
+#### [Observability & Monitoring](./09_observability_monitoring)
+Production monitoring with CloudWatch metrics
+
+**Tech Stack:** AWS CloudWatch • Azure Monitor • Metrics • Alerting  
+**Impact:** 99.5% system reliability achieved
+
+#### [Case Studies Portfolio](./10_case_studies_portfolio)
+Detailed platform transformation stories with real metrics
+
+**Tech Stack:** Platform migrations • Team leadership • Business impact  
+**Impact:** Real-world results from Fortune 500 implementations
+
+#### [Azure Data Factory CI/CD](./11_adf_ci_cd_medallion)
+Medallion architecture with automated deployments
+
+**Tech Stack:** Azure Data Factory • GitHub Actions • Databricks • CI/CD  
+**Impact:** Automated, testable data pipelines
+
+#### [Platform Leadership Assets](./12_platform_leadership_assets)
+Engineering standards, metrics, roadmaps, and team onboarding
+
+**Tech Stack:** Leadership • Team development • Standards • Metrics  
+**Impact:** 95%+ retention through strong engineering culture
 
 ---
 
+### Machine Learning & Advanced Topics
 
-### [Streaming Big Data Systems](/Taash1M/Taashi_Github/tree/main/Implementation%20Code/Streaming_Big_Data)
+#### [ML: Linear Regression (House Prices)](./12_ml_linear_regression_house_prices)
+Predictive modeling with linear regression
 
-**Advanced High-Throughput Distributed Systems Portfolio**
+#### [ML: Logistic Regression (Churn Prediction)](./13_ml_logistic_regression_churn)
+Customer churn prediction with classification
 
-#### [01_DoorDash_Logistics](/Taash1M/Taashi_Github/tree/main/Implementation%20Code/Streaming_Big_Data/01_DoorDash_Logistics)
-**Focus: State Management & Out-of-Order Data**
-* **Tech:** Flink, Kafka, Terraform, Postgres
-* **Concept:** Handling late events in delivery logic using complex windowing.
+#### [ML: Sentiment Analysis](./14_ml_sentiment_analysis)
+NLP sentiment analysis implementation
 
-#### [02_Uber_CDC_Mesh](/Taash1M/Taashi_Github/tree/main/Implementation%20Code/Streaming_Big_Data/02_Uber_CDC_Mesh)
-**Focus: Data Integration & Schema Evolution**
-* **Tech:** Debezium, Kafka Connect, Avro, Iceberg
-* **Concept:** "At-least-once" delivery with schema registry for order tables.
-
-#### [03_Netflix_Keystone](/Taash1M/Taashi_Github/tree/main/Implementation%20Code/Streaming_Big_Data/03_Netflix_Keystone)
-**Focus: Platform Engineering & Routing**
-* **Tech:** Dynamic Routing, Redis, Great Expectations
-* **Concept:** Self-serve data routing platform with dynamic rule enforcement.
-
-#### [04_Snapchat_RealTimeML](/Taash1M/Taashi_Github/tree/main/Implementation%20Code/Streaming_Big_Data/04_Snapchat_RealTimeML)
-**Focus: High Throughput & Feature Engineering**
-* **Tech:** Spark Structured Streaming, Redis (Feature Store)
-* **Concept:** Low-latency read paths for real-time ML inference.
-
-#### [05_X_Stream_Filtering](/Taash1M/Taashi_Github/tree/main/Implementation%20Code/Streaming_Big_Data/05_X_Stream_Filtering)
-**Focus: High Volume Filtering**
-* **Tech:** Bloom Filters, Firehose Ingestion
-* **Concept:** Efficient stream filtering and sentiment analysis at scale.
-
+#### [Streaming Big Data Systems](./15_Streaming_Big_Data)
+Real-world streaming patterns (DoorDash, Uber, Netflix, Snapchat, X, Facebook) • Contains 6 production-inspired streaming architectures
 
 ---
 
-## By The Numbers
+## 🛠️ Technical Leadership Areas
+
+### Data Platform Architecture
+- **Cloud Platforms:** AWS, Azure, GCP (BigQuery), Multi-cloud strategy
+- **Data Warehouses:** Snowflake, Databricks, Synapse Analytics, BigQuery
+- **Processing:** Apache Spark, Kafka streaming, Airflow orchestration, dbt
+- **Migrations:** Oracle to cloud, Legacy modernization, Zero-downtime transitions
+
+### Data Engineering & Quality
+- **Real-time Processing:** Spark Streaming, Kafka, High-volume event pipelines
+- **ETL/ELT:** Python frameworks, Distributed processing, Incremental loads
+- **Data Modeling:** Dimensional modeling, Star/Snowflake schemas, Medallion architecture
+- **Quality:** pytest, Great Expectations, Automated validation, CI/CD pipelines
+
+### AI/ML & Emerging Tech
+- **Production AI:** GPT APIs, LangChain, Custom MCP integrations
+- **ML Operations:** Model monitoring, Governance, Bias detection
+- **Streaming ML:** Real-time feature engineering, Online prediction
+- **Innovation:** Rapid prototyping, Measurable ROI, Production-grade reliability
+
+### DevOps & Operational Excellence
+- **CI/CD:** GitHub Actions, Azure DevOps, Automated deployments
+- **Monitoring:** CloudWatch, Azure Monitor, Metrics, Alerting, Dashboards
+- **Languages:** Python, SQL, PySpark, Bash
+- **Reliability:** 99.5%+ SLAs, Incident management, Blameless culture
+
+---
+
+## 📊 By the Numbers
 
 ```
-f3af 12+ Years         	 Data Engineering Leadership
-f465 26 Engineers      	 Hired & Mentored (career total)
-f680 5 Platforms       	 Architected & Transformed
-f4ca 10M+ Events/Day   	 Processing at Scale
-f4b0 $5M+ Budget       	 Platform Investments Managed
-	26a1 99.5% Uptime      	 Production System Reliability
+💰 30%        cost reduction with 70% performance improvement
+⚡ 67%        query execution time reduction (45min → 15min)  
+📈 99.5%      system reliability across all pipelines
+👥 12-14      engineers led across distributed teams
+🚀 3x         platform adoption increase
+📉 60%        reduction in data quality incidents
+🔄 0          downtime during critical migrations
+📦 200+       internal customers served daily
 ```
 
 ---
 
-## Currently Learning & Growing
+## 🎓 Education
 
-f525 **Advanced Distributed Systems** - Building for global scale  
-f9e0 **LLM Fine-tuning** & prompt engineering for production AI  
-	2601 **Multi-cloud optimization** - AWS + Azure + GCP patterns  
-f4da **Machine Learning, AI and Info Sysytems** - Foster Business School MS '26
+- **Master of Science in Information Systems** - Foster Business School, University of Washington (2025-2026)
+- **Bachelor of Science in Economics** (Applied Statistics and Econometrics ) - UZ
 
 ---
 
-## Let's Connect
+## 💼 Professional Experience
 
-I'm currently exploring **Director and Senior Manager Data Engineering** opportunities where I can:
-- f3d7	e0f Architect scalable data platforms at enterprise scale
-- f465 Build and mentor high-performing engineering teams
-- f680 Drive technical excellence through hands-on leadership
-- f4ca Deliver measurable business impact through data systems
+### Snr Data Engineering Leader - Data Platform & Analytics
+**Fluke Corporation** (Fortune 500, $2B+ Industrial Technology) | April 2018 - Present
 
-### **Contact Information**
+- Built and scaled distributed data platform serving 200+ internal customers
+- Drove end-to-end Oracle to multi-cloud migration (AWS, Azure, GCP)
+- Achieved 70% performance improvement and 30% cost reduction
+- Led team of 12 engineers with 95%+ retention through mentorship and transparency
 
-f4e7 **Email:** taashir@gmail.com  
-f4bc **LinkedIn:** [linkedin.com/in/taashi-m-74b14a161](https://linkedin.com/in/taashi-m-74b14a161)  
-f4cd **Location:** Seattle, WA | **Open to:** Remote opportunities  
-f393 **Education:** MS Information Systems (Foster '26), BSc Economics (Applied Statistics and Econometrics)
+### Engineering Manager - Business Intelligence Platform
+**Gilbarco AFS** (Vontier Corp) | February 2013 - March 2018
 
----
-
-## What I'm Looking For
-
-### **Ideal Role Characteristics:**
-- **Level:** Director or Senior Manager, Data Engineering
-- **Team Size:** Managing 10~15+ engineers or multiple teams
-- **Focus:** Platform architecture, data infrastructure and modeling, or analytics engineering
-- **Culture:** High trust, bias for action, operational excellence, growth mindset
-- **Platforms and Technologies:** Tech companies at scale (Snowflake, Azure, AWS, Databricks, etc.)
+- Led cross-functional team of 14 engineers building scalable BI platform
+- Achieved >98% data accuracy serving 500+ global users
+- Drove technical excellence through hands-on architecture and code reviews
 
 ---
 
-*Last Updated: December 06, 2025*  
-*Profile Status: 	2705 Active - Open to Director/Senior Manager opportunities*
+## 📫 Let's Connect
+
+I'm interested in discussing:
+- **Data platform architecture** and cloud migration strategies
+- **Building high-performing teams** and engineering culture
+- **Operational excellence** and reliability at scale
+- **Leadership opportunities** in data platforms and engineering management
+
+**Email:** taashir@gmail.com  
+**Phone:** (323) 794-6425  
+**LinkedIn:** [linkedin.com/in/taashi-m-74b14a161](https://linkedin.com/in/taashi-m-74b14a161)  
+**Location:** Seattle, WA (Remote)
 
 ---
 
-**f31f If you've made it this far, let's connect! I'd love to discuss data engineering at scale, team building, or opportunities to collaborate.**
+## 🌟 Current Focus
+
+- 🎓 Pursuing **MS in Information Systems** at UW Foster Business School
+- 🔭 Exploring **AI/ML integration** in data platforms (GPT APIs, LangChain)
+- 🌱 Building **next-generation cloud architectures** with medallion patterns
+- 👯 **Mentoring engineering leaders** and growing technical talent
+- 💬 Open to **leadership opportunities** in data engineering and platform teams
+
+---
+
+## 🏆 Key Achievements
+
+- ✅ **Zero downtime** migration of business-critical manufacturing systems
+- ✅ **99.5% system reliability** with comprehensive monitoring and alerting
+- ✅ **3x platform adoption** through user-centric design and partnerships
+- ✅ **95%+ team retention** through transparent leadership and empowerment
+- ✅ **60% fewer data incidents** through automated quality frameworks
+- ✅ **Production AI** with measurable business ROI in 2024
+
+---
+
+## 📚 Repository Structure
+
+This repository showcases production-grade implementations across:
+- **Platform modernization** (Azure, AWS, GCP)
+- **Data quality** and testing frameworks
+- **Real-time streaming** at scale
+- **ML governance** and operations
+- **Leadership assets** (standards, metrics, onboarding)
+
+Each project includes:
+- ✅ Working code with detailed comments
+- ✅ Sample data and test cases
+- ✅ Architecture documentation
+- ✅ CI/CD pipelines and automation
+- ✅ README with context and outcomes
+
+---
+
+<div align="center">
+
+**Building resilient systems and empowered teams that deliver business impact**
+
+[![GitHub followers](https://img.shields.io/github/followers/Taash1M?style=social)](https://github.com/Taash1M)
+[![GitHub stars](https://img.shields.io/github/stars/Taash1M/Taashi_Github?style=social)](https://github.com/Taash1M/Taashi_Github)
+
+*Last updated: December 10, 2025*
+
+</div>
