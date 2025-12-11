@@ -29,6 +29,18 @@ I specialize in building and scaling distributed data platforms, leading cross-f
 - 🎓 **Technical excellence**: Established culture of operational rigor with blameless post-mortems and on-call practices
 - 🔧 **Data quality**: Reduced data quality incidents by **60%** through Python validation frameworks
 
+
+---
+## 🧠 Section 3: AI & Agentic Architectures
+
+### Project 16: The Wall Street Swarm (Multi-Agent Financial System)
+* **Goal:** Automate high-value investment research by mimicking a human analyst team (Researcher + Quant + Writer).
+* **Architecture:** **Agentic Workflow** using sequential hand-offs and deterministic tool use.
+* **Key Tech:** Python, LLM Orchestration, Vector Search Patterns.
+* **Why it Matters:** Demonstrates how to solve **hallucination** and **auditability** challenges in FinTech by decoupling "Reasoning" (LLM) from "Knowledge" (Deterministic Tools).
+* **[View Project Code](./Implementation%20Code/16_Agentic_Financial_Analyst)**
+
+
 ### Innovation & Technical Leadership
 - 🤖 **AI/ML integration**: Shipped production AI solutions in 2024 with GPT APIs, LangChain, and MCP integrations
 - 📊 **Platform adoption**: Drove **3x increase** in platform usage through modern architecture and user-centric design
