@@ -26,6 +26,57 @@ With 200M+ users, Netflix cannot wait for overnight batch jobs to know if playba
 - `consumer.py`: The Keystone Aggregator. It sessionizes events to calculate view time and buffering.
 - `utils_logger.py`: High-performance logging config.
 
+### Architecture Diagram: Netflix Keystone Pipeline
+
+```mermaid
+%%{init: {'theme': 'neutral', 'themeVariables': { 'fontFamily': 'arial', 'fontSize': '14px'}}}%%
+graph TD
+    %% Definitions & Styling
+    classDef source fill:#E1D5E7,stroke:#9673A6,stroke-width:2px,color:#000;
+    classDef ingestion fill:#FFF2CC,stroke:#D6B656,stroke-width:2px,color:#000;
+    classDef processing fill:#DAE8FC,stroke:#6C8EBF,stroke-width:2px,color:#000;
+    classDef storage fill:#F5F5F5,stroke:#666666,stroke-width:2px,color:#000;
+    classDef action fill:#D5E8D4,stroke:#82B366,stroke-width:2px,color:#000;
+
+    subgraph Sources ["Client Telemetry (Edge)"]
+        SmartTV["Smart TV<br/>(4K HDR Stream)"]:::source
+        Mobile["Mobile Devices<br/>(Variable Bitrate)"]:::source
+    end
+
+    subgraph Ingestion ["Keystone Data Backbone"]
+        Kafka["Apache Kafka<br/>Topic: keystone-telemetry"]:::ingestion
+    end
+
+    subgraph Processing ["Stream Processing (Router)"]
+        Aggregator["Keystone Aggregator<br/>(Sessionization Logic)"]:::processing
+        StateStore[("In-Memory State<br/>(Active Sessions)")]:::storage
+    end
+
+    subgraph RealTime ["Real-Time Path (Hot)"]
+        Elastic["Elasticsearch<br/>(Operational Dashboards)"]:::action
+        Alerts["Ops Alerting<br/>(Bitrate Downgrade)"]:::action
+    end
+
+    subgraph Batch ["Long-Term Path (Cold)"]
+        S3[("AWS S3 Data Lake<br/>(Historical Analysis)")]:::storage
+    end
+
+    %% Data Flow
+    SmartTV -->|"1. Emit Start/Buffer"| Kafka
+    Mobile -->|"1. Emit Heartbeat"| Kafka
+    Kafka -->|"2. Consume High Volume"| Aggregator
+
+    Aggregator -->|"3. Update Session"| StateStore
+    StateStore -.->|"4. Check Thresholds"| Aggregator
+
+    Aggregator -->|"5. Route Critical Events"| Alerts
+    Aggregator -->|"5. Index Metrics"| Elastic
+    Aggregator -->|"6. Archive Session"| S3
+
+    linkStyle 2,3,4,5,6,7 stroke:#007ACC,stroke-width:2px,fill:none;
+```
+
+
 ### How to Run this Demo
 
 **Step 1: Install Dependencies**
