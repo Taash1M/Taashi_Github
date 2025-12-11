@@ -26,6 +26,57 @@ Augmented Reality (AR) filters (like dog ears) must 'stick' to a user's face per
 - `consumer.py`: The ML Inference Engine. Includes logic to measure lag and drop frames.
 - `utils_logger.py`: Configured for millisecond-precision logging.
 
+### Architecture Diagram: Snapchat Real-Time AR Pipeline
+
+```mermaid
+%%{init: {'theme': 'neutral', 'themeVariables': { 'fontFamily': 'arial', 'fontSize': '14px'}}}%%
+graph TD
+    %% Definitions & Styling
+    classDef source fill:#E1D5E7,stroke:#9673A6,stroke-width:2px,color:#000;
+    classDef ingestion fill:#FFF2CC,stroke:#D6B656,stroke-width:2px,color:#000;
+    classDef processing fill:#DAE8FC,stroke:#6C8EBF,stroke-width:2px,color:#000;
+    classDef logic fill:#F8CECC,stroke:#B85450,stroke-width:2px,color:#000;
+    classDef action fill:#D5E8D4,stroke:#82B366,stroke-width:2px,color:#000;
+
+    subgraph Sources ["Mobile Client (Edge)"]
+        Camera["Camera Stream<br/>(30 FPS Video)"]:::source
+        Landmarks["Facial Feature Vectors<br/>(Eyes, Nose, Mouth)"]:::source
+    end
+
+    subgraph Transport ["High-Speed Ingest"]
+        Kafka["Apache Kafka<br/>Topic: video-frames"]:::ingestion
+    end
+
+    subgraph Inference ["ML Inference Engine"]
+        Model["ML Consumer<br/>(Calculate 3D Coordinates)"]:::processing
+        LatencyTimer["Latency Timer<br/>(Network + Compute)"]:::processing
+    end
+
+    subgraph QualityControl ["QoE Logic Gate"]
+        Check{"Latency < 33ms?"}:::logic
+    end
+
+    subgraph ClientAction ["Client Rendering"]
+        Render["Render AR Overlay<br/>(Success)"]:::action
+        Drop["Drop Frame<br/>(Prevents Drift)"]:::logic
+    end
+
+    %% Data Flow
+    Camera -->|"Extract Features"| Landmarks
+    Landmarks -->|"1. Publish Frame"| Kafka
+    Kafka -->|"2. Consume Stream"| Model
+    
+    Model -->|"3. Calculate Overlay"| LatencyTimer
+    LatencyTimer -->|"4. Check Total Time"| Check
+
+    %% Decision Logic
+    Check -->|"Yes (Fast)"| Render
+    Check -->|"No (Lag)"| Drop
+
+    linkStyle 2,3,4,5,6 stroke:#007ACC,stroke-width:2px,fill:none;
+```
+
+
 ### How to Run this Demo
 
 **Step 1: Install Dependencies**
