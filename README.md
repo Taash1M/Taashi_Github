@@ -141,8 +141,6 @@ NLP sentiment analysis implementation
 #### [Streaming Big Data Systems](./15_Streaming_Big_Data)
 Real-world streaming patterns (DoorDash, Uber, Netflix, Snapchat, X, Facebook) • Contains 6 production-inspired streaming architectures
 
----
-
 
 ---
 ## 🧠 Section 3: AI & Agentic Architectures
