@@ -26,6 +26,66 @@ With billions of posts daily, Facebook needs to instantly identify 'Viral' conte
 - `consumer.py`: The Viral Engine. Detects spikes in post traffic.
 - `utils_logger.py`: Logging config.
 
+### Architecture Diagram: Facebook Viral Content Detection
+
+```mermaid
+graph TD
+  %% Definitions & Styling
+  classDef source fill:#E1D5E7,stroke:#9673A6,stroke-width:2px,color:#000;
+  classDef ingestion fill:#FFF2CC,stroke:#D6B656,stroke-width:2px,color:#000;
+  classDef processing fill:#DAE8FC,stroke:#6C8EBF,stroke-width:2px,color:#000;
+  classDef action fill:#D5E8D4,stroke:#82B366,stroke-width:2px,color:#000;
+  classDef storage fill:#F5F5F5,stroke:#666666,stroke-width:2px,color:#000;
+
+  subgraph Sources ["User Interactions"]
+    Mobile["Mobile App Users
+(Likes, Comments)"]:::source
+    Web["Web Desktop Users
+(Reactions, Shares)"]:::source
+  end
+
+  subgraph Ingestion ["High Velocity Ingest"]
+    Kafka["Kafka Topic
+(fb-interactions)"]:::ingestion
+  end
+
+  subgraph Processing ["Viral Engine (Consumer)"]
+    VelocityEngine["Stream Processor
+(Calculate Velocity/Sec)"]:::processing
+    ThresholdLogic{"Velocity > 100?"}:::processing
+  end
+
+  subgraph State ["State Management"]
+    Redis[("Redis Counter
+(Sliding Window State)")]:::storage
+  end
+
+  subgraph Actions ["Downstream Impact"]
+    NewsFeed["News Feed Algorithm
+(Boost Visibility)"]:::action
+    Analytics["Content Dashboard
+(Trending Topics)"]:::action
+  end
+
+  %% Data Flow
+  Mobile -->|"Emit Interaction"| Kafka
+  Web -->|"Emit Interaction"| Kafka
+  Kafka -->|"Consume Stream"| VelocityEngine
+  
+  VelocityEngine -->|"Update Count"| Redis
+  Redis -.->|"Return Current Velocity"| VelocityEngine
+  
+  VelocityEngine -->|"Check Threshold"| ThresholdLogic
+
+  %% Logic Flow
+  ThresholdLogic -->|"Yes (Viral)"| NewsFeed
+  ThresholdLogic -->|"Yes (Viral)"| Analytics
+  ThresholdLogic -->|"No (Normal)"| Redis
+
+  linkStyle 2,3,4,5,6 stroke:#007ACC,stroke-width:2px,fill:none;
+```
+
+
 ### How to Run this Demo
 
 **Step 1: Install Dependencies**

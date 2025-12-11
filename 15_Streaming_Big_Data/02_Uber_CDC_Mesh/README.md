@@ -25,6 +25,56 @@ In a massive monolith (like Uber's early days), querying the main database for a
 - `utils_logger.py`: Logging utility.
 - `.env`: Environment config.
 
+### Architecture Diagram: Uber CDC Data Mesh
+
+```mermaid
+%%{init: {'theme': 'neutral', 'themeVariables': { 'fontFamily': 'arial', 'fontSize': '14px'}}}%%
+graph TD
+    %% Definitions & Styling
+    classDef source fill:#E1D5E7,stroke:#9673A6,stroke-width:2px,color:#000;
+    classDef ingestion fill:#FFF2CC,stroke:#D6B656,stroke-width:2px,color:#000;
+    classDef processing fill:#DAE8FC,stroke:#6C8EBF,stroke-width:2px,color:#000;
+    classDef storage fill:#F5F5F5,stroke:#666666,stroke-width:2px,color:#000;
+    classDef action fill:#D5E8D4,stroke:#82B366,stroke-width:2px,color:#000;
+
+    subgraph Source ["Legacy Monolith"]
+        Postgres[("Postgres DB<br/>(Users & Trips Tables)")]:::source
+        WAL["Write-Ahead Log<br/>(Transaction History)"]:::source
+    end
+
+    subgraph CDC ["Change Data Capture"]
+        Debezium["CDC Producer<br/>(Simulates Debezium)"]:::ingestion
+    end
+
+    subgraph Transport ["Event Backbone"]
+        Kafka["Apache Kafka<br/>Topic: db-changes"]:::ingestion
+    end
+
+    subgraph MeshNode ["Incentive Microservice (Data Mesh Node)"]
+        Consumer["Incentive Service<br/>(Python Consumer)"]:::processing
+        LocalCache[("Local State Cache<br/>(Driver Stats)")]:::storage
+    end
+
+    subgraph Outcome ["Business Value"]
+        Bonus["Bonus Triggered<br/>(Real-Time Payout)"]:::action
+    end
+
+    %% Data Flow
+    Postgres -->|"1. Transaction Commit"| WAL
+    WAL -->|"2. Read Log"| Debezium
+    Debezium -->|"3. Publish CDC Event<br/>(Insert/Update)"| Kafka
+    Kafka -->|"4. Consume Change"| Consumer
+
+    Consumer -->|"5. Update Local State"| LocalCache
+    LocalCache -.->|"6. Check Logic<br/>(Trips > 15)"| Consumer
+    Consumer -->|"7. Unlock Bonus"| Bonus
+
+    linkStyle 2,3,4,5,6 stroke:#007ACC,stroke-width:2px,fill:none;
+```
+
+
+
+
 ### How to Run this Demo
 
 **Step 1: Install Dependencies**

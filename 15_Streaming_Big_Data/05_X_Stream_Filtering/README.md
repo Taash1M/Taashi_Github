@@ -27,6 +27,51 @@ X processes 500 million posts per day. It is impossible and wasteful for a singl
 - `consumer.py`: The "Filter". It ignores everything except specific keywords (AI, Tech).
 - `utils_logger.py`: Logging config.
 
+```mermaid
+graph TD
+  %% Definitions & Styling
+  classDef source fill:#E1D5E7,stroke:#9673A6,stroke-width:2px,color:#000;
+  classDef ingestion fill:#FFF2CC,stroke:#D6B656,stroke-width:2px,color:#000;
+  classDef processing fill:#DAE8FC,stroke:#6C8EBF,stroke-width:2px,color:#000;
+  classDef action fill:#D5E8D4,stroke:#82B366,stroke-width:2px,color:#000;
+  classDef waste fill:#F5F5F5,stroke:#666666,stroke-width:2px,color:#999;
+
+  subgraph Sources ["Global Data Sources"]
+    Users["Global Users
+(500M Tweets/Day)"]:::source
+    Topics["Diverse Topics
+(Sports, Politics, K-Pop)"]:::source
+  end
+
+  subgraph Ingestion ["The Firehose (High Volume)"]
+    Kafka["Apache Kafka
+Topic: global-firehose"]:::ingestion
+  end
+
+  subgraph Filtering ["Filter Engine (Consumer)"]
+    FilterService["Stream Processor
+(Python/Spark)"]:::processing
+    LogicGate{"Contains Keywords?
+(#AI, #Tech)"}:::processing
+  end
+
+  subgraph Destinations ["Downstream Actions"]
+    AnalyticsDB["Tech Analytics DB
+(High Value Data)"]:::action
+    Discard["/dev/null
+(Discard Noise)"]:::waste
+  end
+
+  %% Data Flow
+  Users -->|"Emit Tweets"| Kafka
+  Topics -.->|"Context"| Users
+  Kafka -->|"Consume Full Stream"| FilterService
+  FilterService -->|"Apply Rules"| LogicGate
+  LogicGate -->|"Yes (Match)"| AnalyticsDB
+  LogicGate -->|"No (Irrelevant)"| Discard
+```
+
+
 ### How to Run this Demo
 
 **Step 1: Install Dependencies**
