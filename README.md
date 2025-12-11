@@ -152,6 +152,7 @@ Real-world streaming patterns (DoorDash, Uber, Netflix, Snapchat, X, Facebook) �
 * **Why it Matters:** Demonstrates how to solve **hallucination** and **auditability** challenges in FinTech by decoupling "Reasoning" (LLM) from "Knowledge" (Deterministic Tools).
 * **[View Project Code](./16_Agentic_Financial_Analyst)**
 
+---
 ## 🛠️ Technical Leadership Areas
 
 ### Data Platform Architecture
