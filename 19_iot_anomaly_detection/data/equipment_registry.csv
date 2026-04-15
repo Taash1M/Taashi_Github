@@ -1,0 +1,6 @@
+machine_id,site,equipment_type
+site_alpha_machine_01,site_alpha,excavator
+site_bravo_machine_01,site_bravo,haul_truck
+site_charlie_machine_01,site_charlie,drill_rig
+site_delta_machine_01,site_delta,loader
+site_echo_machine_01,site_echo,crusher

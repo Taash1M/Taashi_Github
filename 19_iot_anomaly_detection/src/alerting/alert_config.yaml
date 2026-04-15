@@ -1,0 +1,29 @@
+# Alert Engine Configuration
+
+thresholds:
+  critical: 0.9    # Anomaly score >= 0.9 -> CRITICAL
+  warning: 0.7     # Anomaly score >= 0.7 -> WARNING
+  info: 0.5        # Anomaly score >= 0.5 -> INFO
+
+cooldown_minutes: 15  # No duplicate alerts within this window
+
+# Equipment-specific overrides (more sensitive for critical equipment)
+equipment_overrides:
+  crusher:
+    critical: 0.85
+    warning: 0.65
+  drill_rig:
+    critical: 0.85
+    warning: 0.60
+
+# Notification routing
+routing:
+  critical:
+    channels: ["pager", "slack", "email"]
+    escalation_minutes: 5
+  warning:
+    channels: ["slack", "email"]
+    escalation_minutes: 30
+  info:
+    channels: ["dashboard"]
+    escalation_minutes: null

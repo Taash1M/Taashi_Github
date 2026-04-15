@@ -1,0 +1,84 @@
+# Multi-Agent Pipeline Configuration
+# Defines agents, tools, knowledge base, and pipeline flow.
+
+pipeline:
+  name: "multi-agent-orchestration"
+  version: "1.0.0"
+  description: "Event-driven multi-agent task orchestration system"
+
+agents:
+  planner:
+    role: planner
+    description: "Decomposes tasks into subtasks"
+    max_tool_calls: 5
+    subscriptions: ["task.plan"]
+
+  researcher:
+    role: researcher
+    description: "Gathers information via tools"
+    max_tool_calls: 15
+    subscriptions: ["task.research"]
+
+  executor:
+    role: executor
+    description: "Executes task actions"
+    max_tool_calls: 10
+    subscriptions: ["task.execute"]
+
+  reviewer:
+    role: reviewer
+    description: "Validates outputs"
+    max_tool_calls: 5
+    subscriptions: ["task.review"]
+
+pipeline_flow:
+  stages:
+    - name: plan
+      agent: planner
+      event: "task.plan"
+    - name: research
+      agent: researcher
+      event: "task.research"
+    - name: execute
+      agent: executor
+      event: "task.execute"
+      checkpoint:
+        name: "pre_review"
+        auto_approve: true
+    - name: review
+      agent: reviewer
+      event: "task.review"
+
+checkpoints:
+  pre_review:
+    description: "Review execution results before final approval"
+    required_keys: ["execution_result"]
+    auto_approve: true
+
+knowledge_base:
+  - id: "doc_architecture"
+    title: "System Architecture"
+    content: >
+      The multi-agent orchestration system uses an event-driven architecture
+      where agents communicate through a central event bus. Each agent is a
+      single-purpose component that subscribes to specific event types and
+      publishes results. State is shared through a centralized state manager
+      with full audit trail.
+
+  - id: "doc_mcp_patterns"
+    title: "MCP Tool Integration Patterns"
+    content: >
+      Tools follow the Model Context Protocol pattern with JSON schema
+      definitions for inputs and outputs. The tool registry validates
+      parameters before dispatch. Each tool invocation is logged for
+      debugging and compliance. Tools are sandboxed to prevent
+      unauthorized access.
+
+  - id: "doc_checkpoint_guide"
+    title: "HITL Checkpoint Guide"
+    content: >
+      Human-in-the-loop checkpoints can be configured at any pipeline
+      stage. When a checkpoint is triggered, the pipeline pauses and
+      presents the current state for review. The reviewer can approve,
+      reject, modify, or skip. Auto-approve mode is available for
+      testing and low-risk stages.

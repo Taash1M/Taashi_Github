@@ -1,0 +1,31 @@
+---
+# Protected Attribute Definitions
+# Attributes that must be monitored for bias but NEVER used as model features
+
+protected_attributes:
+  - name: gender
+    type: categorical
+    values: ["Male", "Female", "Non-Binary"]
+    legal_basis: "Title VII of the Civil Rights Act"
+
+  - name: age_group
+    type: categorical
+    values: ["22-30", "31-40", "41-50", "51-60"]
+    legal_basis: "Age Discrimination in Employment Act (ADEA)"
+
+  - name: ethnicity
+    type: categorical
+    values: ["White", "Asian", "Hispanic", "Black", "Other"]
+    legal_basis: "Title VII of the Civil Rights Act"
+
+# Features that may serve as proxies for protected attributes
+proxy_risk_features:
+  - zip_code  # May correlate with ethnicity
+  - university_name  # May correlate with socioeconomic status
+  - commute_distance  # May correlate with zip code (proxy)
+
+# Intersectional combinations to monitor
+intersectional_pairs:
+  - ["gender", "ethnicity"]
+  - ["gender", "age_group"]
+  - ["ethnicity", "age_group"]

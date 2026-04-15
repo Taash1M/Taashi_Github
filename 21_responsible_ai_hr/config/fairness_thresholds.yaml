@@ -1,0 +1,29 @@
+---
+# Fairness Thresholds Configuration
+# Defines acceptable bounds for bias metrics across HR models
+
+demographic_parity:
+  # Four-fifths (80%) rule from EEOC Uniform Guidelines
+  disparate_impact_threshold: 0.8
+  # Warn when ratio is close to threshold
+  warning_threshold: 0.85
+
+equalized_odds:
+  # Maximum acceptable gap in TPR between groups
+  max_tpr_gap: 0.10
+  # Maximum acceptable gap in FPR between groups
+  max_fpr_gap: 0.10
+
+intersectional:
+  # Minimum group size to include in analysis
+  min_group_size: 30
+  # Maximum acceptable gap between any intersectional groups
+  max_rate_gap: 0.15
+
+compliance:
+  # Overall status thresholds
+  red_if_any_fail: true
+  require_model_card: true
+  require_audit_trail: true
+  require_governance_review: true
+  review_frequency_days: 90
